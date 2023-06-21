@@ -12,8 +12,8 @@
   </head>
 
   <body>
-    <%= render 'shared/frontend/flash' if notice %>
     <%= render 'shared/frontend/navbar' %>
+    <%= render 'shared/flash' if notice %>
     <main class="min-h-full mx-20">
       <%= yield %>
     </main>

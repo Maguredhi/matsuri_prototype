@@ -1,0 +1,31 @@
+
+<h1 class="text-2xl font-bold mb-4">お知らせ</h1>
+<%= link_to 'ニュース追加', new_admin_news_path, class: 'btn btn-neutral mb-10' %>
+
+<div class="overflow-x-auto">
+  <table class="table">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th></th>
+        <th>TITLE</th>
+        <th>STATUS</th>
+        <th>OPTION</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @news.each do |item| %>
+      <tr>
+        <th><%= item.id %></th>
+        <td><%= item.title %></td>
+        <td><%= item.status %></td>
+        <td>
+          <%= link_to 'Show', admin_news_path(item), class: 'btn btn-sm' %>
+          <%= link_to 'Edit', edit_admin_news_path(item), class: 'btn btn-secondary btn-sm' %>
+          <%= link_to 'Delete', admin_news_path(item), class: 'btn btn-warning btn-sm', data: { turbo_method: :delete, turbo_confirm: 'Are You Sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

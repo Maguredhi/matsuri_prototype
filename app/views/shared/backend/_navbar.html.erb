@@ -15,14 +15,16 @@
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
       <li>
-        <%= link_to 'EVENT', admin_events_path, class: '' %>
+        <%= link_to 'EVENT', admin_events_path, class: 'btn btn-ghost normal-case text-xl' %>
       </li>
-      <li><a>NEWS</a></li>
-      <li><a>ACCOUNT</a></li>
+      <li>
+        <%= link_to 'NEWS', admin_news_index_path, class: 'btn btn-ghost normal-case text-xl' %>
+      </li>
+      <li><a class="btn btn-ghost normal-case text-xl">ACCOUNT</a></li>
     </ul>
   </div>
   <div class="navbar-end">
-    <p>HI, <%= current_user.email %> さん</p>
+    <p>HI, <%= current_user.email %></p>
     <%= link_to 'Log out', destroy_user_session_path, class: 'ml-2 btn', data: { turbo_method: :delete, turbo_confirm: 'Are You Sure?' } %>
   </div>
 </div>

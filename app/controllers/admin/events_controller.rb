@@ -1,9 +1,7 @@
 class Admin::EventsController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_event, only: [:edit, :update, :destroy]
   layout 'backend'
-
-  def top
-  end
 
   def index
     @events = Event.all
@@ -22,9 +20,9 @@ class Admin::EventsController < ApplicationController
 
     if @event.save
       if params[:publish]
-        redirect_to events_path, notice: 'Event Published Success!'
+        redirect_to admin_events_path, notice: 'Event Published Success!'
       else
-        redirect_to edit_event_path(@event), notice: 'Draft Save!'
+        redirect_to admin_events_path, notice: 'Draft Save!'
       end
     else
       render :new, status: :unprocessable_entity
@@ -39,12 +37,12 @@ class Admin::EventsController < ApplicationController
       case
       when params[:publish]
         @event.publish!
-        redirect_to events_path, notice: 'Event Published Success!'
+        redirect_to admin_events_path, notice: 'Event Published Success!'
       when params[:unpublish]
         @event.unpublish!
-        redirect_to events_path, notice: 'Event Unpublished Success!'
+        redirect_to admin_events_path, notice: 'Event Unpublished Success!'
       else
-        redirect_to events_path, notice: 'Edit Success!'
+        redirect_to admin_events_path, notice: 'Edit Success!'
       end
     else
       render :edit
@@ -53,7 +51,7 @@ class Admin::EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    redirect_to events_path, notice: 'Event Destroy Success!'
+    redirect_to admin_events_path, notice: 'Event Destroy Success!'
   end
 
   private
@@ -63,6 +61,6 @@ class Admin::EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :content)
+    params.require(:event).permit(:title, :category, :content)
   end
 end

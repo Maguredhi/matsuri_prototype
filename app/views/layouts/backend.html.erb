@@ -12,8 +12,9 @@
   </head>
 
   <body>
-    <main>
-      <%= render 'shared/backend/navbar' %>
+    <%= render 'shared/backend/navbar' %>
+    <%= render 'shared/flash' if notice %>
+    <main class="mx-20 mt-10">
       <%= yield %>
     </main>
   </body>
