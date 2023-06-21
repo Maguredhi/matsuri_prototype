@@ -19,5 +19,16 @@ module.exports = {
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/container-queries'),
-  ]
+    require("daisyui"),
+  ],
+  daisyui: {
+    themes: ["light", "dark", "cupcake", "retro", "cyberpunk"],
+    darkTheme: "dark",
+    base: true,
+    styled: true,
+    utils: true,
+    rtl: false,
+    prefix: "",
+    logs: true,
+  },
 }

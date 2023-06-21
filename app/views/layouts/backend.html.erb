@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html data-theme="retro" lang="ja">
   <head>
-    <title>MATSURIService</title>
+    <title>MATSURI_CRM</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,11 +12,9 @@
   </head>
 
   <body>
-    <%= render 'shared/frontend/flash' if notice %>
-    <%= render 'shared/frontend/navbar' %>
-    <main class="min-h-full mx-20">
+    <main>
+      <%= render 'shared/backend/navbar' %>
       <%= yield %>
     </main>
   </body>
-  <%= render 'shared/frontend/footer' %>
 </html>

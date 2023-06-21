@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :users
+  root "pages#top"
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :events, only: [:index, :show]
+
+  namespace :admin do
+    root 'events#index'
+    resources :events
+  end
 end
