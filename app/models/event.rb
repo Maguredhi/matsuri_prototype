@@ -1,8 +1,11 @@
 class Event < ApplicationRecord
   include AASM
 
-  validates :title, presence: true
   belongs_to :user
+  has_many :event_datetimes
+  has_one :event_category
+
+  validates :title, presence: true
 
   aasm(column: 'status', no_direct_assignment: true) do
     state :draft, initial: true

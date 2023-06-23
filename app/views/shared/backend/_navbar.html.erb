@@ -25,6 +25,6 @@
   </div>
   <div class="navbar-end">
     <p>HI, <%= current_user.account %></p>
-    <%= link_to 'Log out', destroy_user_session_path, class: 'ml-2 btn', data: { turbo_method: :delete, turbo_confirm: 'Are You Sure?' } %>
+    <%= link_to 'Log out', destroy_user_session_path, class: 'ml-4 btn', data: { turbo_method: :delete, turbo_confirm: 'Are You Sure?' } %>
   </div>
 </div>

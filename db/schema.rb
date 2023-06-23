@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_22_035129) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_22_035132) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "event_categories", force: :cascade do |t|
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "event_datetimes", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "events", force: :cascade do |t|
     t.string "title"
@@ -24,6 +39,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_22_035129) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "event_category_id"
+    t.bigint "event_datetime_id"
+    t.index ["event_category_id"], name: "index_events_on_event_category_id"
+    t.index ["event_datetime_id"], name: "index_events_on_event_datetime_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -50,6 +69,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_22_035129) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "events", "event_categories"
+  add_foreign_key "events", "event_datetimes"
   add_foreign_key "events", "users"
   add_foreign_key "news", "users"
 end
